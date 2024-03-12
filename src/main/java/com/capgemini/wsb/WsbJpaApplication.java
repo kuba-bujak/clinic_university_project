@@ -9,4 +9,5 @@ public class WsbJpaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WsbJpaApplication.class, args);
 	}
+	//Checked
 }
