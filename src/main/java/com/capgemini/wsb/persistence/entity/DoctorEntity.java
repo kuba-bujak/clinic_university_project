@@ -13,21 +13,22 @@ public class DoctorEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(name = "firstName", nullable = false)
 	private String firstName;
 
-	@Column(nullable = false)
+	@Column(name = "lastName", nullable = false)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(name = "telephoneNumber", nullable = false)
 	private String telephoneNumber;
 
+	@Column(name = "email", nullable = false)
 	private String email;
 
-	@Column(nullable = false)
+	@Column(name = "doctorNumber", nullable = false)
 	private String doctorNumber;
 
-	@Column(nullable = false)
+	@Column(name = "specialization", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 

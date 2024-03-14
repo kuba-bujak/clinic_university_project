@@ -10,13 +10,16 @@ public class AddressEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	@Column(name = "city", nullable = false)
 	private String city;
 
+	@Column(name = "addressLine1", nullable = false)
 	private String addressLine1;
 
+	@Column(name = "addressLine2")
 	private String addressLine2;
 
+	@Column(name = "postalCode", nullable = false)
 	private String postalCode;
 
 	@ManyToMany(mappedBy = "addresses")

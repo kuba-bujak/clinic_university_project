@@ -14,21 +14,21 @@ public class PatientEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(name = "firstName", nullable = false)
 	private String firstName;
 
-	@Column(nullable = false)
+	@Column(name = "lastName", nullable = false)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(name = "telephoneNumber", nullable = false)
 	private String telephoneNumber;
-
+	@Column(name = "email", nullable = false)
 	private String email;
 
-	@Column(nullable = false)
+	@Column(name = "patientNumber", nullable = false)
 	private String patientNumber;
 
-	@Column(nullable = false)
+	@Column(name = "dateOfBirth", nullable = false)
 	private LocalDate dateOfBirth;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)

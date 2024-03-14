@@ -12,9 +12,9 @@ public class MedicalTreatmentEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(name = "description", nullable = false)
 	private String description;
-
+	@Column(name = "type", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
