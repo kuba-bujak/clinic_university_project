@@ -1,7 +1,7 @@
 -- Dodawanie adresów
 INSERT INTO ADDRESS (id, address_line1, address_line2, city, postal_code)
 VALUES 
-    (1, 'ul. Kwiatowa 1', 'apt. 5', 'Warszawa', '00-001'),
+    (1, 'ul. Kwiatowa 1', 'apt. 5', 'Warszawa', '62-030'),
     (2, 'ul. Słoneczna 10', NULL, 'Kraków', '30-002'),
     (3, 'ul. Leśna 7', NULL, 'Gdańsk', '80-003');
 
