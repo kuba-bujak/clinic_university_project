@@ -1,12 +1,15 @@
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\service\impl\AddressServiceImpl.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\enums\TreatmentType.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\Dao.java
+C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\PatientDao.java
+C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\mapper\PatientMapper.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\rest\AddressController.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\mapper\AddressMapper.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\entity\AddressEntity.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\rest\exception\EntityNotFoundException.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\dto\AddressTO.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\enums\Specialization.java
+C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\dto\PatientTO.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\entity\PatientEntity.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\impl\AddressDaoImpl.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\impl\AbstractDao.java
@@ -17,3 +20,4 @@ C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\ent
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\WsbJpaApplication.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\AddressDao.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\rest\exception\advise\EntityNotFoundAdvise.java
+C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\impl\PatientDaoImpl.java
