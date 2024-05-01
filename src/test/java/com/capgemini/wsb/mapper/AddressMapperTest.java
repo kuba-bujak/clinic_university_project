@@ -1,7 +1,10 @@
 package com.capgemini.wsb.mapper;
 
 import com.capgemini.wsb.dto.AddressTO;
+import com.capgemini.wsb.dto.DoctorTO;
+import com.capgemini.wsb.dto.PatientTO;
 import com.capgemini.wsb.persistence.entity.AddressEntity;
+import com.capgemini.wsb.persistence.entity.DoctorEntity;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
 import org.junit.Test;
 
@@ -23,11 +26,16 @@ public class AddressMapperTest {
         addressEntity.setCity("City");
         addressEntity.setPostalCode("12345");
 
-        List<PatientEntity> patients = new ArrayList<>();
-        PatientEntity patient1 = new PatientEntity();
-        patient1.setId(101L);
-        patients.add(patient1);
+        List<DoctorEntity> doctors = new ArrayList<>();
+        DoctorEntity doctorEntity = new DoctorEntity();
+        doctorEntity.setId(1L);
+        doctors.add(doctorEntity);
+        addressEntity.setDoctors(doctors);
 
+        List<PatientEntity> patients = new ArrayList<>();
+        PatientEntity patientEntity = new PatientEntity();
+        patientEntity.setId(1L);
+        patients.add(patientEntity);
         addressEntity.setPatients(patients);
 
         // when
@@ -39,8 +47,8 @@ public class AddressMapperTest {
         assertEquals(addressEntity.getAddressLine2(), addressTO.getAddressLine2());
         assertEquals(addressEntity.getCity(), addressTO.getCity());
         assertEquals(addressEntity.getPostalCode(), addressTO.getPostalCode());
-        assertEquals(addressEntity.getPatients().size(), addressTO.getPatients().size());
-        assertEquals(addressEntity.getPatients().get(0).getId(), addressTO.getPatients().get(0));
+        assertEquals(1, addressTO.getDoctors().size());
+        assertEquals(1, addressTO.getPatients().size());
     }
 
     @Test
@@ -53,9 +61,17 @@ public class AddressMapperTest {
         addressTO.setCity("City");
         addressTO.setPostalCode("12345");
 
-        List<Long> patientIds = new ArrayList<>();
-        patientIds.add(101L);
-        addressTO.setPatients(patientIds);
+        List<DoctorTO> doctorTOs = new ArrayList<>();
+        DoctorTO doctorTO = new DoctorTO();
+        doctorTO.setId(1L);
+        doctorTOs.add(doctorTO);
+        addressTO.setDoctors(doctorTOs);
+
+        List<PatientTO> patientTOs = new ArrayList<>();
+        PatientTO patientTO = new PatientTO();
+        patientTO.setId(1L);
+        patientTOs.add(patientTO);
+        addressTO.setPatients(patientTOs);
 
         // when
         AddressEntity addressEntity = AddressMapper.mapToEntity(addressTO);
@@ -66,8 +82,8 @@ public class AddressMapperTest {
         assertEquals(addressTO.getAddressLine2(), addressEntity.getAddressLine2());
         assertEquals(addressTO.getCity(), addressEntity.getCity());
         assertEquals(addressTO.getPostalCode(), addressEntity.getPostalCode());
-        assertEquals(addressTO.getPatients().size(), addressEntity.getPatients().size());
-        assertEquals(addressTO.getPatients().get(0), addressEntity.getPatients().get(0).getId());
+        assertEquals(1, addressEntity.getDoctors().size());
+        assertEquals(1, addressEntity.getPatients().size());
     }
 
     @Test

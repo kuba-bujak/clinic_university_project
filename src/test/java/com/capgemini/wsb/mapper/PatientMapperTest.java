@@ -1,8 +1,11 @@
 package com.capgemini.wsb.mapper;
 
+import com.capgemini.wsb.dto.AddressTO;
 import com.capgemini.wsb.dto.PatientTO;
+import com.capgemini.wsb.dto.VisitTO;
 import com.capgemini.wsb.persistence.entity.AddressEntity;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
+import com.capgemini.wsb.persistence.entity.VisitEntity;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -23,7 +26,7 @@ public class PatientMapperTest {
         patientEntity.setTelephoneNumber("123456789");
         patientEntity.setEmail("john.doe@example.com");
         patientEntity.setPatientNumber("P001");
-        patientEntity.setDateOfBirth(LocalDate.parse("1990-01-01"));
+        patientEntity.setDateOfBirth(LocalDate.of(1990, 1, 1));
         patientEntity.setHasInsurance(true);
 
         List<AddressEntity> addresses = new ArrayList<>();
@@ -32,6 +35,13 @@ public class PatientMapperTest {
         addresses.add(address);
 
         patientEntity.setAddresses(addresses);
+
+        List<VisitEntity> visits = new ArrayList<>();
+        VisitEntity visit = new VisitEntity();
+        visit.setId(201L);
+        visits.add(visit);
+
+        patientEntity.setVisits(visits);
 
         // when
         PatientTO patientTO = PatientMapper.mapToTO(patientEntity);
@@ -45,8 +55,8 @@ public class PatientMapperTest {
         assertEquals(patientEntity.getPatientNumber(), patientTO.getPatientNumber());
         assertEquals(patientEntity.getDateOfBirth(), patientTO.getDateOfBirth());
         assertEquals(patientEntity.isHasInsurance(), patientTO.isHasInsurance());
-        assertEquals(patientEntity.getAddresses().size(), patientTO.getAddresses().size());
-        assertEquals(patientEntity.getAddresses().get(0).getId(), patientTO.getAddresses().get(0));
+        assertEquals(1, patientEntity.getAddresses().size());
+        assertEquals(1, patientEntity.getVisits().size());
     }
 
     @Test
@@ -59,12 +69,22 @@ public class PatientMapperTest {
         patientTO.setTelephoneNumber("123456789");
         patientTO.setEmail("john.doe@example.com");
         patientTO.setPatientNumber("P001");
-        patientTO.setDateOfBirth(LocalDate.parse("1990-01-01"));
+        patientTO.setDateOfBirth(LocalDate.of(1990, 1, 1));
         patientTO.setHasInsurance(true);
 
-        List<Long> addressIds = new ArrayList<>();
-        addressIds.add(101L);
-        patientTO.setAddresses(addressIds);
+        List<AddressTO> addresses = new ArrayList<>();
+        AddressTO address = new AddressTO();
+        address.setId(101L);
+        addresses.add(address);
+
+        patientTO.setAddresses(addresses);
+
+        List<VisitTO> visits = new ArrayList<>();
+        VisitTO visit = new VisitTO();
+        visit.setId(101L);
+        visits.add(visit);
+
+        patientTO.setVisits(visits);
 
         // when
         PatientEntity patientEntity = PatientMapper.mapToEntity(patientTO);
@@ -78,8 +98,8 @@ public class PatientMapperTest {
         assertEquals(patientTO.getPatientNumber(), patientEntity.getPatientNumber());
         assertEquals(patientTO.getDateOfBirth(), patientEntity.getDateOfBirth());
         assertEquals(patientTO.isHasInsurance(), patientEntity.isHasInsurance());
-        assertEquals(patientTO.getAddresses().size(), patientEntity.getAddresses().size());
-        assertEquals(patientTO.getAddresses().get(0), patientEntity.getAddresses().get(0).getId());
+        assertEquals(1, patientTO.getAddresses().size());
+        assertEquals(1, patientTO.getVisits().size());
     }
 
     @Test

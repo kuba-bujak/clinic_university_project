@@ -15,6 +15,7 @@ C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\rest\exception\
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\dto\VisitTO.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\service\PatientService.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\service\impl\AddressServiceImpl.java
+C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\mapper\DoctorMapper.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\mapper\MedicalTreatmentMapper.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\Dao.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\service\impl\PatientServiceImpl.java
@@ -27,3 +28,4 @@ C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\dto\MedicalTrea
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\impl\AddressDaoImpl.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\entity\VisitEntity.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\impl\PatientDaoImpl.java
+C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\mapper\VisitMapper.java

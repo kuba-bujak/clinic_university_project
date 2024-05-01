@@ -21,7 +21,12 @@ public final class AddressMapper
         addressTO.setAddressLine2(addressEntity.getAddressLine2());
         addressTO.setCity(addressEntity.getCity());
         addressTO.setPostalCode(addressEntity.getPostalCode());
-        addressTO.setPatients(addressEntity.getPatients().stream().map(PatientEntity::getId).collect(Collectors.toList()));
+        if (addressEntity.getPatients() != null) {
+            addressTO.setPatients(addressEntity.getPatients().stream().map(PatientMapper::mapToTO).collect(Collectors.toList()));
+        }
+        if (addressEntity.getDoctors() != null) {
+            addressTO.setDoctors(addressEntity.getDoctors().stream().map(DoctorMapper::mapToTO).collect(Collectors.toList()));
+        }
         return addressTO;
     }
 
@@ -37,11 +42,12 @@ public final class AddressMapper
         addressEntity.setAddressLine2(addressTO.getAddressLine2());
         addressEntity.setCity(addressTO.getCity());
         addressEntity.setPostalCode(addressTO.getPostalCode());
-        addressEntity.setPatients(addressTO.getPatients().stream().map(patientID -> {
-            PatientEntity patient = new PatientEntity();
-            patient.setId(patientID);
-            return patient;
-        }).collect(Collectors.toList()));
+        if (addressTO.getDoctors() != null) {
+            addressEntity.setDoctors(addressTO.getDoctors().stream().map(DoctorMapper::mapToEntity).collect(Collectors.toList()));
+        }
+        if (addressTO.getPatients() != null) {
+            addressEntity.setPatients(addressTO.getPatients().stream().map(PatientMapper::mapToEntity).collect(Collectors.toList()));
+        }
         return addressEntity;
     }
 }

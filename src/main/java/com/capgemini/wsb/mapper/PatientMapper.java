@@ -3,6 +3,7 @@ package com.capgemini.wsb.mapper;
 import com.capgemini.wsb.dto.PatientTO;
 import com.capgemini.wsb.persistence.entity.AddressEntity;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
+import com.capgemini.wsb.persistence.entity.VisitEntity;
 
 import java.util.stream.Collectors;
 
@@ -21,7 +22,12 @@ public final class PatientMapper {
         patientTO.setPatientNumber(patientEntity.getPatientNumber());
         patientTO.setDateOfBirth(patientEntity.getDateOfBirth());
         patientTO.setHasInsurance(patientEntity.isHasInsurance());
-        patientTO.setAddresses(patientEntity.getAddresses().stream().map(AddressEntity::getId).collect(Collectors.toList()));
+        if (patientEntity.getAddresses() != null) {
+            patientTO.setAddresses(patientEntity.getAddresses().stream().map(AddressMapper::mapToTO).collect(Collectors.toList()));
+        }
+        if (patientEntity.getVisits() != null) {
+            patientTO.setVisits(patientEntity.getVisits().stream().map(VisitMapper::mapToTO).collect(Collectors.toList()));
+        }
         return patientTO;
     }
 
@@ -40,11 +46,12 @@ public final class PatientMapper {
         patientEntity.setPatientNumber(patientTO.getPatientNumber());
         patientEntity.setDateOfBirth(patientTO.getDateOfBirth());
         patientEntity.setHasInsurance(patientTO.isHasInsurance());
-        patientEntity.setAddresses(patientTO.getAddresses().stream().map(addressID -> {
-            AddressEntity address = new AddressEntity();
-            address.setId(addressID);
-            return address;
-        }).collect(Collectors.toList()));
+        if (patientTO.getAddresses() != null) {
+            patientEntity.setAddresses(patientTO.getAddresses().stream().map(AddressMapper::mapToEntity).collect(Collectors.toList()));
+        }
+        if (patientTO.getVisits() != null) {
+            patientEntity.setVisits(patientTO.getVisits().stream().map(VisitMapper::mapToEntity).collect(Collectors.toList()));
+        }
         return patientEntity;
     }
 }
