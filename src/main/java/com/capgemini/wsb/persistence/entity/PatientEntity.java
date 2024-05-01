@@ -43,7 +43,7 @@ public class PatientEntity {
 	private List<AddressEntity> addresses;
 
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private Collection<VisitEntity> visits;
+	private List<VisitEntity> visits;
 
 	public Long getId() {
 		return id;
@@ -109,11 +109,11 @@ public class PatientEntity {
 		this.addresses = addresses;
 	}
 
-	public Collection<VisitEntity> getVisits() {
+	public List<VisitEntity> getVisits() {
 		return visits;
 	}
 
-	public void setVisits(Collection<VisitEntity> visits) {
+	public void setVisits(List<VisitEntity> visits) {
 		this.visits = visits;
 	}
 

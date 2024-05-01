@@ -2,6 +2,7 @@ package com.capgemini.wsb.persistence.entity;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -24,10 +25,10 @@ public class VisitEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "DOCTOR_ID")
-	private PatientEntity doctor;
+	private DoctorEntity doctor;
 
 	@OneToMany(mappedBy = "visit", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private Collection<MedicalTreatmentEntity> medicalTreatments;
+	private List<MedicalTreatmentEntity> medicalTreatments;
 
 	public Long getId() {
 		return id;
@@ -61,19 +62,19 @@ public class VisitEntity {
 		this.patient = patient;
 	}
 
-	public PatientEntity getDoctor() {
+	public DoctorEntity getDoctor() {
 		return doctor;
 	}
 
-	public void setDoctor(PatientEntity doctor) {
+	public void setDoctor(DoctorEntity doctor) {
 		this.doctor = doctor;
 	}
 
-	public Collection<MedicalTreatmentEntity> getMedicalTreatments() {
+	public List<MedicalTreatmentEntity> getMedicalTreatments() {
 		return medicalTreatments;
 	}
 
-	public void setMedicalTreatments(Collection<MedicalTreatmentEntity> medicalTreatments) {
+	public void setMedicalTreatments(List<MedicalTreatmentEntity> medicalTreatments) {
 		this.medicalTreatments = medicalTreatments;
 	}
 }
