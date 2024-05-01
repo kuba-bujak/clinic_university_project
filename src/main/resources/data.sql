@@ -12,10 +12,10 @@ VALUES
     (2, 'Anna', 'Nowak', '987654321', 'anna.nowak@example.com', 'A456', 'DERMATOLOGIST');
 
 -- Dodawanie pacjentów
-INSERT INTO PATIENT (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth)
+INSERT INTO PATIENT (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, has_insurance)
 VALUES
-    (1, 'Piotr', 'Wiśniewski', '111222333', 'piotr.wisniewski@example.com', 'P123', '1985-05-10'),
-    (2, 'Alicja', 'Dąbrowska', '444555666', 'alicja.dabrowska@example.com', 'A456', '1990-12-15');
+    (1, 'Piotr', 'Wiśniewski', '111222333', 'piotr.wisniewski@example.com', 'P123', '1985-05-10', true),
+    (2, 'Alicja', 'Dąbrowska', '444555666', 'alicja.dabrowska@example.com', 'A456', '1990-12-15', false);
 
 -- Dodawanie wizyt
 INSERT INTO VISIT (id, description, time, PATIENT_ID, DOCTOR_ID)

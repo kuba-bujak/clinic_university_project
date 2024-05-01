@@ -27,9 +27,12 @@ public class PatientEntity {
 
 	@Column(name = "patientNumber", nullable = false)
 	private String patientNumber;
-
+                      
 	@Column(name = "dateOfBirth", nullable = false)
 	private LocalDate dateOfBirth;
+
+	@Column(name="hasInsurance", nullable = false)
+	private boolean hasInsurance;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
 	@JoinTable(
@@ -112,5 +115,13 @@ public class PatientEntity {
 
 	public void setVisits(Collection<VisitEntity> visits) {
 		this.visits = visits;
+	}
+
+	public boolean isHasInsurance() {
+		return hasInsurance;
+	}
+
+	public void setHasInsurance(boolean hasInsurance) {
+		this.hasInsurance = hasInsurance;
 	}
 }
