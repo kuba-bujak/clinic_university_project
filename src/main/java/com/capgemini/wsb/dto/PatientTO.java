@@ -13,7 +13,7 @@ public class PatientTO implements Serializable {
     private String patientNumber;
     private LocalDate dateOfBirth;
     private boolean hasInsurance;
-    private List<AddressTO> addresses;
+    private List<Long> addresses;
 
     public Long getId() {
         return id;
@@ -79,11 +79,11 @@ public class PatientTO implements Serializable {
         this.hasInsurance = hasInsurance;
     }
 
-    public List<AddressTO> getAddresses() {
+    public List<Long> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(List<AddressTO> addresses) {
+    public void setAddresses(List<Long> addresses) {
         this.addresses = addresses;
     }
 }

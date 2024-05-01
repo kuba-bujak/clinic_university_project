@@ -15,6 +15,7 @@ public class AddressMapperTest {
 
     @Test
     public void testMapToTO() {
+        // given
         AddressEntity addressEntity = new AddressEntity();
         addressEntity.setId(1L);
         addressEntity.setAddressLine1("Street 1");
@@ -29,8 +30,10 @@ public class AddressMapperTest {
 
         addressEntity.setPatients(patients);
 
+        // when
         AddressTO addressTO = AddressMapper.mapToTO(addressEntity);
 
+        // then
         assertEquals(addressEntity.getId(), addressTO.getId());
         assertEquals(addressEntity.getAddressLine1(), addressTO.getAddressLine1());
         assertEquals(addressEntity.getAddressLine2(), addressTO.getAddressLine2());
@@ -42,6 +45,7 @@ public class AddressMapperTest {
 
     @Test
     public void testMapToEntity() {
+        // given
         AddressTO addressTO = new AddressTO();
         addressTO.setId(1L);
         addressTO.setAddressLine1("Street 1");
@@ -53,8 +57,10 @@ public class AddressMapperTest {
         patientIds.add(101L);
         addressTO.setPatients(patientIds);
 
+        // when
         AddressEntity addressEntity = AddressMapper.mapToEntity(addressTO);
 
+        // then
         assertEquals(addressTO.getId(), addressEntity.getId());
         assertEquals(addressTO.getAddressLine1(), addressEntity.getAddressLine1());
         assertEquals(addressTO.getAddressLine2(), addressEntity.getAddressLine2());
