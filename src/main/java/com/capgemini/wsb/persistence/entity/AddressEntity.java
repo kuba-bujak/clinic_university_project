@@ -1,5 +1,7 @@
 package com.capgemini.wsb.persistence.entity;
 
+import com.capgemini.wsb.dto.PatientTO;
+
 import javax.persistence.*;
 import java.util.List;
 
