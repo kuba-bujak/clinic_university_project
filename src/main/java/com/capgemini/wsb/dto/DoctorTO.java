@@ -2,20 +2,19 @@ package com.capgemini.wsb.dto;
 
 import com.capgemini.wsb.persistence.entity.AddressEntity;
 import com.capgemini.wsb.persistence.entity.VisitEntity;
+import com.capgemini.wsb.persistence.enums.Specialization;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
 
-public class PatientTO implements Serializable {
+public class DoctorTO implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
     private String telephoneNumber;
     private String email;
-    private String patientNumber;
-    private LocalDate dateOfBirth;
-    private boolean hasInsurance;
+    private String doctorNumber;
+    private Specialization specialization;
     private List<AddressTO> addresses;
     private List<VisitTO> visits;
 
@@ -59,28 +58,20 @@ public class PatientTO implements Serializable {
         this.email = email;
     }
 
-    public String getPatientNumber() {
-        return patientNumber;
+    public String getDoctorNumber() {
+        return doctorNumber;
     }
 
-    public void setPatientNumber(String patientNumber) {
-        this.patientNumber = patientNumber;
+    public void setDoctorNumber(String doctorNumber) {
+        this.doctorNumber = doctorNumber;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+    public Specialization getSpecialization() {
+        return specialization;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public boolean isHasInsurance() {
-        return hasInsurance;
-    }
-
-    public void setHasInsurance(boolean hasInsurance) {
-        this.hasInsurance = hasInsurance;
+    public void setSpecialization(Specialization specialization) {
+        this.specialization = specialization;
     }
 
     public List<AddressTO> getAddresses() {

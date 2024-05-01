@@ -1,5 +1,8 @@
 package com.capgemini.wsb.dto;
 
+import com.capgemini.wsb.persistence.entity.DoctorEntity;
+import com.capgemini.wsb.persistence.entity.PatientEntity;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,7 +18,9 @@ public class AddressTO implements Serializable
 
     private String postalCode;
 
-    private List<Long> patients;
+    private List<DoctorTO> doctors;
+
+    private List<PatientTO> patients;
 
     public Long getId() {
         return id;
@@ -57,12 +62,19 @@ public class AddressTO implements Serializable
         this.postalCode = postalCode;
     }
 
-    public List<Long> getPatients() {
+    public List<DoctorTO> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(List<DoctorTO> doctors) {
+        this.doctors = doctors;
+    }
+
+    public List<PatientTO> getPatients() {
         return patients;
     }
 
-    public void setPatients(List<Long> patients) {
+    public void setPatients(List<PatientTO> patients) {
         this.patients = patients;
     }
-
 }
