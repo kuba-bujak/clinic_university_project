@@ -1,9 +1,7 @@
 package com.capgemini.wsb.mapper;
 
 import com.capgemini.wsb.dto.PatientTO;
-import com.capgemini.wsb.persistence.entity.AddressEntity;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
-import com.capgemini.wsb.persistence.entity.VisitEntity;
 
 import java.util.stream.Collectors;
 
