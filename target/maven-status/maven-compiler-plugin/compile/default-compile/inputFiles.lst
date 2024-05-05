@@ -32,10 +32,10 @@ C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\dto\DoctorTO.ja
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\rest\exception\EntityNotFoundException.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\enums\Specialization.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\dto\PatientTO.java
+C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\service\impl\MedicalTreatmenServiceImpl.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\dto\MedicalTreatmentTO.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\MedicalTreatmentDao.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\impl\AddressDaoImpl.java
-C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\service\impl\MedicalTreatmentServiceImpl.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\entity\VisitEntity.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\service\impl\DoctorServiceImpl.java
 C:\dev\clinic_university_project\src\main\java\com\capgemini\wsb\persistence\dao\impl\PatientDaoImpl.java
