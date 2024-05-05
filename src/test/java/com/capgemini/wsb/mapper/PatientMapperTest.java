@@ -1,9 +1,11 @@
 package com.capgemini.wsb.mapper;
 
 import com.capgemini.wsb.dto.AddressTO;
+import com.capgemini.wsb.dto.DoctorTO;
 import com.capgemini.wsb.dto.PatientTO;
 import com.capgemini.wsb.dto.VisitTO;
 import com.capgemini.wsb.persistence.entity.AddressEntity;
+import com.capgemini.wsb.persistence.entity.DoctorEntity;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
 import com.capgemini.wsb.persistence.entity.VisitEntity;
 import org.junit.jupiter.api.Test;
@@ -38,13 +40,20 @@ public class PatientMapperTest {
 
         List<VisitEntity> visits = new ArrayList<>();
         VisitEntity visit = new VisitEntity();
+        DoctorEntity doctorEntity = new DoctorEntity();
+        doctorEntity.setId(301L);
         visit.setId(201L);
+        visit.setPatient(patientEntity);
+        visit.setDoctor(doctorEntity);
         visits.add(visit);
 
         patientEntity.setVisits(visits);
 
         // when
         PatientTO patientTO = PatientMapper.mapToTO(patientEntity);
+
+        System.out.println(patientEntity.getId());
+        System.out.println(patientTO.getId());
 
         // then
         assertEquals(patientEntity.getId(), patientTO.getId());
@@ -81,7 +90,11 @@ public class PatientMapperTest {
 
         List<VisitTO> visits = new ArrayList<>();
         VisitTO visit = new VisitTO();
+        DoctorTO doctorTO = new DoctorTO();
+        doctorTO.setId(500L);
         visit.setId(101L);
+        visit.setPatientID(patientTO.getId());
+        visit.setDoctorID(doctorTO.getId());
         visits.add(visit);
 
         patientTO.setVisits(visits);

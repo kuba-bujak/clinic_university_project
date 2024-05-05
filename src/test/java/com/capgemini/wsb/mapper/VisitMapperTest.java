@@ -47,8 +47,8 @@ public class VisitMapperTest {
         assertEquals(visitEntity.getId(), visitTO.getId());
         assertEquals(visitEntity.getDescription(), visitTO.getDescription());
         assertEquals(visitEntity.getTime(), visitTO.getTime());
-        assertEquals(visitEntity.getPatient().getId(), visitTO.getPatient().getId());
-        assertEquals(visitEntity.getDoctor().getId(), visitTO.getDoctor().getId());
+        assertEquals(visitEntity.getPatient().getId(), visitTO.getPatientID());
+        assertEquals(visitEntity.getDoctor().getId(), visitTO.getDoctorID());
         assertEquals(1, visitEntity.getMedicalTreatments().size());
     }
 
@@ -62,11 +62,11 @@ public class VisitMapperTest {
 
         PatientTO patientTO = new PatientTO();
         patientTO.setId(1L);
-        visitTO.setPatient(patientTO);
+        visitTO.setPatientID(patientTO.getId());
 
         DoctorTO doctorTO = new DoctorTO();
         doctorTO.setId(1L);
-        visitTO.setDoctor(doctorTO);
+        visitTO.setDoctorID(doctorTO.getId());
 
         List<MedicalTreatmentTO> medicalTreatmentTOs = new ArrayList<>();
         MedicalTreatmentTO medicalTreatmentTO = new MedicalTreatmentTO();
@@ -81,8 +81,8 @@ public class VisitMapperTest {
         assertEquals(visitTO.getId(), visitEntity.getId());
         assertEquals(visitTO.getDescription(), visitEntity.getDescription());
         assertEquals(visitTO.getTime(), visitEntity.getTime());
-        assertEquals(visitTO.getPatient().getId(), visitEntity.getPatient().getId());
-        assertEquals(visitTO.getDoctor().getId(), visitEntity.getDoctor().getId());
+        assertEquals(visitTO.getPatientID(), visitEntity.getPatient().getId());
+        assertEquals(visitTO.getDoctorID() , visitEntity.getDoctor().getId());
         assertEquals(1, visitTO.getMedicalTreatments().size());
     }
 

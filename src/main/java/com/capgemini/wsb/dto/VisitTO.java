@@ -12,8 +12,8 @@ public class VisitTO implements Serializable {
     private Long id;
     private String description;
     private LocalDateTime time;
-    private PatientTO patient;
-    private DoctorTO doctor;
+    private Long patientID;
+    private Long doctorID;
     private List<MedicalTreatmentTO> medicalTreatments;
 
     public Long getId() {
@@ -40,20 +40,20 @@ public class VisitTO implements Serializable {
         this.time = time;
     }
 
-    public PatientTO getPatient() {
-        return patient;
+    public Long getPatientID() {
+        return patientID;
     }
 
-    public void setPatient(PatientTO patient) {
-        this.patient = patient;
+    public void setPatientID(Long patientID) {
+        this.patientID = patientID;
     }
 
-    public DoctorTO getDoctor() {
-        return doctor;
+    public Long getDoctorID() {
+        return doctorID;
     }
 
-    public void setDoctor(DoctorTO doctor) {
-        this.doctor = doctor;
+    public void setDoctorID(Long doctorID) {
+        this.doctorID = doctorID;
     }
 
     public List<MedicalTreatmentTO> getMedicalTreatments() {
