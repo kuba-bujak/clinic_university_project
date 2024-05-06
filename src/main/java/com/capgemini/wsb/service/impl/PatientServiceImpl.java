@@ -8,10 +8,11 @@ import com.capgemini.wsb.persistence.dao.PatientDao;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
 import com.capgemini.wsb.persistence.entity.VisitEntity;
 import com.capgemini.wsb.service.PatientService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,5 +59,13 @@ public class PatientServiceImpl implements PatientService {
         return visitEntities.stream()
                 .map(VisitMapper::mapToTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PatientTO getPatientWithVisits(Long patientId) {
+        PatientEntity patientEntity = patientDao.findOne(patientId);
+        Hibernate.initialize(patientEntity.getVisits());
+        return PatientMapper.mapToTO(patientEntity);
     }
 }

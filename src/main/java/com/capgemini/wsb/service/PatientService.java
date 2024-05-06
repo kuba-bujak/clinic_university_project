@@ -15,4 +15,6 @@ public interface PatientService {
     PatientTO updatePatient(PatientTO patientTO);
 
     List<VisitTO> getAllVisitsForPatient(Long patientId);
+
+    PatientTO getPatientWithVisits(Long patientID);
 }

@@ -22,8 +22,8 @@ public final class VisitMapper {
         visitTO.setId(visitEntity.getId());
         visitTO.setDescription(visitEntity.getDescription());
         visitTO.setTime(visitEntity.getTime());
-        visitTO.setPatientID(visitEntity.getPatient().getId());
-        visitTO.setDoctorID(visitEntity.getDoctor().getId());
+        visitTO.setPatient(PatientMapper.mapToTO(visitEntity.getPatient()));
+        visitTO.setDoctor(DoctorMapper.mapToTO(visitEntity.getDoctor()));
         if (visitEntity.getMedicalTreatments() != null) {
             visitTO.setMedicalTreatments(visitEntity.getMedicalTreatments().stream().map(MedicalTreatmentMapper::mapToTO).collect(Collectors.toList()));
         }
@@ -39,14 +39,8 @@ public final class VisitMapper {
         visitEntity.setId(visitTO.getId());
         visitEntity.setDescription(visitTO.getDescription());
         visitEntity.setTime(visitTO.getTime());
-
-        PatientEntity patientEntity = new PatientEntity();
-        patientEntity.setId(visitTO.getPatientID());
-        visitEntity.setPatient(patientEntity);
-
-        DoctorEntity doctorEntity = new DoctorEntity();
-        doctorEntity.setId(visitTO.getDoctorID());
-        visitEntity.setDoctor(doctorEntity);
+        visitEntity.setPatient(PatientMapper.mapToEntity(visitTO.getPatient()));
+        visitEntity.setDoctor(DoctorMapper.mapToEntity(visitTO.getDoctor()));
 
         if (visitTO.getMedicalTreatments() != null) {
             visitEntity.setMedicalTreatments(visitTO.getMedicalTreatments().stream().map(MedicalTreatmentMapper::mapToEntity).collect(Collectors.toList()));

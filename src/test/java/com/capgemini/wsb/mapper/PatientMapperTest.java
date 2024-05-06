@@ -93,8 +93,8 @@ public class PatientMapperTest {
         DoctorTO doctorTO = new DoctorTO();
         doctorTO.setId(500L);
         visit.setId(101L);
-        visit.setPatientID(patientTO.getId());
-        visit.setDoctorID(doctorTO.getId());
+        visit.setPatient(patientTO);
+        visit.setDoctor(doctorTO);
         visits.add(visit);
 
         patientTO.setVisits(visits);
