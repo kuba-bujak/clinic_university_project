@@ -49,8 +49,8 @@ VALUES
 -- Dodawanie pacjentów
 INSERT INTO PATIENT (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, has_insurance)
 VALUES
-    (1, 'Piotr', 'Wiśniewski', '111222333', 'piotr.wisniewski@example.com', 'P123', '1985-05-10', true),
-    (2, 'Alicja', 'Dąbrowska', '444555666', 'alicja.dabrowska@example.com', 'A456', '1990-12-15', false),
+    (1, 'Piotr', 'Wisniewski', '111222333', 'piotr.wisniewski@example.com', 'P123', '1985-05-10', true),
+    (2, 'Alicja', 'Dabrowska', '444555666', 'alicja.dabrowska@example.com', 'A456', '1990-12-15', false),
     (3, 'Katarzyna', 'Kowalczyk', '777888999', 'katarzyna.kowalczyk@example.com', 'K789', '1976-03-25', true),
     (4, 'Robert', 'Lis', '333222111', 'robert.lis@example.com', 'R012', '1980-09-30', false),
     (5, 'Magdalena', 'Wójcik', '999888777', 'magdalena.wojcik@example.com', 'M345', '1995-07-12', true),

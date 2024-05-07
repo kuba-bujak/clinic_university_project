@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class DoctorServiceImpl implements DoctorService {
@@ -23,5 +25,11 @@ public class DoctorServiceImpl implements DoctorService {
     public DoctorTO findById(Long id) {
         final DoctorEntity doctorEntity = doctorDao.findOne(id);
         return DoctorMapper.mapToTO(doctorEntity);
+    }
+
+    @Override
+    public int DoctorsNumber() {
+        final List<DoctorEntity> doctorEntities = doctorDao.findAll();
+        return doctorEntities.size();
     }
 }

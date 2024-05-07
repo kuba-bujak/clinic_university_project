@@ -1,9 +1,6 @@
 package com.capgemini.wsb.mapper;
 
-import com.capgemini.wsb.dto.DoctorTO;
-import com.capgemini.wsb.dto.MedicalTreatmentTO;
-import com.capgemini.wsb.dto.PatientTO;
-import com.capgemini.wsb.dto.VisitTO;
+import com.capgemini.wsb.dto.*;
 import com.capgemini.wsb.persistence.entity.DoctorEntity;
 import com.capgemini.wsb.persistence.entity.MedicalTreatmentEntity;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
@@ -60,13 +57,13 @@ public class VisitMapperTest {
         visitTO.setDescription("Description");
         visitTO.setTime(LocalDateTime.now());
 
-        PatientTO patientTO = new PatientTO();
-        patientTO.setId(1L);
-        visitTO.setPatient(patientTO);
+        ShortenedPatientTO shortenedPatientTO = new ShortenedPatientTO();
+        shortenedPatientTO.setId(1L);
+        visitTO.setPatient(shortenedPatientTO);
 
-        DoctorTO doctorTO = new DoctorTO();
-        doctorTO.setId(1L);
-        visitTO.setDoctor(doctorTO);
+        ShortenedDoctorTO shortenedDoctorTO = new ShortenedDoctorTO();
+        shortenedDoctorTO.setId(1L);
+        visitTO.setDoctor(shortenedDoctorTO);
 
         List<MedicalTreatmentTO> medicalTreatmentTOs = new ArrayList<>();
         MedicalTreatmentTO medicalTreatmentTO = new MedicalTreatmentTO();

@@ -1,8 +1,11 @@
 package com.capgemini.wsb.service.impl;
 
 import com.capgemini.wsb.dto.PatientTO;
+import com.capgemini.wsb.dto.ShortenedPatientTO;
 import com.capgemini.wsb.dto.VisitTO;
 import com.capgemini.wsb.mapper.PatientMapper;
+import com.capgemini.wsb.mapper.ShortenedDoctorMapper;
+import com.capgemini.wsb.mapper.ShortenedPatientMapper;
 import com.capgemini.wsb.mapper.VisitMapper;
 import com.capgemini.wsb.persistence.dao.PatientDao;
 import com.capgemini.wsb.persistence.entity.PatientEntity;

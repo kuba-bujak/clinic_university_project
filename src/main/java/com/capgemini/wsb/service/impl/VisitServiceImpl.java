@@ -6,7 +6,13 @@ import com.capgemini.wsb.persistence.dao.VisitDao;
 import com.capgemini.wsb.persistence.entity.VisitEntity;
 import com.capgemini.wsb.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+@Service
+@Transactional
 public class VisitServiceImpl implements VisitService {
 
     private final VisitDao visitDao;
@@ -21,4 +27,13 @@ public class VisitServiceImpl implements VisitService {
         final VisitEntity visitEntity = visitDao.findOne(id);
         return VisitMapper.mapToTO(visitEntity);
     }
+
+    @Override
+    public List<VisitTO> findAllVisits() {
+        final List<VisitEntity> visits = visitDao.findAll();
+        List<VisitTO> visitTOS = visits.stream().map(VisitMapper::mapToTO).collect(Collectors.toList());
+        return visitTOS;
+    }
+
+
 }

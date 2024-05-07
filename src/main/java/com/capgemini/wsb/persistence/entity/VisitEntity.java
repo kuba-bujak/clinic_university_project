@@ -13,10 +13,10 @@ public class VisitEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "description", nullable = false)
+	@Column(name = "description")
 	private String description;
 
-	@Column(name = "time", nullable = false)
+	@Column(name = "time")
 	private LocalDateTime time;
 
 	@ManyToOne

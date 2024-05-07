@@ -1,38 +1,51 @@
 package com.capgemini.wsb.service;
 
 import com.capgemini.wsb.dto.*;
-import com.capgemini.wsb.mapper.PatientMapper;
-import com.capgemini.wsb.mapper.VisitMapper;
 import com.capgemini.wsb.persistence.dao.PatientDao;
+import com.capgemini.wsb.persistence.dao.impl.PatientDaoImpl;
+import com.capgemini.wsb.persistence.dao.impl.VisitDaoImpl;
+import com.capgemini.wsb.persistence.entity.PatientEntity;
 import com.capgemini.wsb.persistence.entity.VisitEntity;
-import org.junit.jupiter.api.Test;
+import com.capgemini.wsb.service.impl.DoctorServiceImpl;
+import com.capgemini.wsb.service.impl.PatientServiceImpl;
+import com.capgemini.wsb.service.impl.VisitServiceImpl;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class PatientServiceImplTest {
 
     @Autowired
-    private PatientService patientService;
+    private PatientServiceImpl patientService;
 
+    @Autowired
+    private VisitServiceImpl visitService;
 
+    @Autowired
+    private DoctorServiceImpl doctorService;
+
+    @Transactional
     @Test
-    void findById() {
+    public void findById() {
         PatientTO patientTO = patientService.findById(1L);
 
         assertEquals("Piotr", patientTO.getFirstName());
-        assertEquals("Wiśniewski", patientTO.getLastName());
+        assertEquals("Wisniewski", patientTO.getLastName());
     }
-
+    @Transactional
     @Test
-    void addPatient() {
+    public void addPatient() {
         // given
         PatientTO patientTO = new PatientTO();
         patientTO.setFirstName("John");
@@ -51,9 +64,9 @@ public class PatientServiceImplTest {
         assertEquals(patientTO.getFirstName(), savedPatientTO.getFirstName());
         assertEquals(patientTO.getLastName(), savedPatientTO.getLastName());
     }
-
+    @Transactional
     @Test
-    void removePatient() {
+    public void removePatient() {
         // given
         PatientTO patientTO = new PatientTO();
         patientTO.setFirstName("John");
@@ -74,8 +87,9 @@ public class PatientServiceImplTest {
         assertNull(patientService.findById(patientId));
     }
 
+    @Transactional
     @Test
-    void getAllVisitsForPatient() {
+    public void testDeletePatientWithVisits() {
         // given
         PatientTO patientTO = new PatientTO();
         patientTO.setFirstName("John");
@@ -86,33 +100,91 @@ public class PatientServiceImplTest {
         patientTO.setDateOfBirth(LocalDate.of(1990, 1, 1));
         patientTO.setHasInsurance(true);
 
-        PatientTO savedPatientTO = patientService.addPatient(patientTO);
-        Long patientId = savedPatientTO.getId();
+        ShortenedPatientTO shortenedPatientTO = new ShortenedPatientTO();
+        shortenedPatientTO.setId(patientTO.getId());
 
-        List<AddressTO> addresses = new ArrayList<>();
-        AddressTO address = new AddressTO();
-        address.setId(101L);
-        addresses.add(address);
+        ShortenedDoctorTO shortenedDoctorTO1 = new ShortenedDoctorTO();
+        shortenedDoctorTO1.setId(doctorService.findById(1L).getId());
 
-        patientTO.setAddresses(addresses);
+        ShortenedDoctorTO shortenedDoctorTO2 = new ShortenedDoctorTO();
+        shortenedDoctorTO2.setId(doctorService.findById(2L).getId());
 
         List<VisitTO> visits = new ArrayList<>();
-        VisitTO visit = new VisitTO();
-        DoctorTO doctorTO = new DoctorTO();
-        doctorTO.setId(500L);
-        visit.setId(101L);
-        visit.setPatient(patientTO);
-        visit.setDoctor(doctorTO);
-        visits.add(visit);
+
+        VisitTO visitTO1 = new VisitTO();
+        visitTO1.setPatient(shortenedPatientTO);
+        visitTO1.setDoctor(shortenedDoctorTO1);
+
+        VisitTO visitTO2 = new VisitTO();
+        visitTO2.setPatient(shortenedPatientTO);
+        visitTO2.setDoctor(shortenedDoctorTO2);
+
+        visits.add(visitTO1);
+        visits.add(visitTO2);
 
         patientTO.setVisits(visits);
 
-        // when
-        List<VisitTO> visits2 = patientService.getAllVisitsForPatient(patientId);
+        int visitInitSize = visitService.findAllVisits().size();
 
-        // then
-        assertFalse(visits.isEmpty()); // upewnienie się, że lista wizyt nie jest pusta
-        assertEquals(1, visits2.size()); // upewnienie się, że jest tylko jedna wizyta dla tego pacjenta
+        PatientTO savedPatientTO = patientService.addPatient(patientTO);
+
+        assertEquals(21, savedPatientTO.getId().intValue());
+        assertEquals(2, savedPatientTO.getVisits().size());
+        assertEquals(20, doctorService.DoctorsNumber());
+
+        patientService.removePatient(savedPatientTO.getId());
+
+        assertNull(patientService.findById(savedPatientTO.getId()));
+        assertEquals(visitInitSize, visitService.findAllVisits().size());
+        assertEquals(20, doctorService.DoctorsNumber());
+
+    }
+
+    @Transactional
+    @Test
+    public void testDeletePatientWithoutDoctors() {
+        // given
+        PatientTO patientTO = new PatientTO();
+        patientTO.setFirstName("John");
+        patientTO.setLastName("Doe");
+        patientTO.setTelephoneNumber("123456789");
+        patientTO.setEmail("john.doe@example.com");
+        patientTO.setPatientNumber("P001");
+        patientTO.setDateOfBirth(LocalDate.of(1990, 1, 1));
+        patientTO.setHasInsurance(true);
+
+        ShortenedPatientTO shortenedPatientTO = new ShortenedPatientTO();
+        shortenedPatientTO.setId(patientTO.getId());
+
+
+
+        List<VisitTO> visits = new ArrayList<>();
+
+        VisitTO visitTO1 = new VisitTO();
+        visitTO1.setPatient(shortenedPatientTO);
+
+        VisitTO visitTO2 = new VisitTO();
+        visitTO2.setPatient(shortenedPatientTO);
+
+        visits.add(visitTO1);
+        visits.add(visitTO2);
+
+        patientTO.setVisits(visits);
+
+
+
+        int visitInitSize = visitService.findAllVisits().size();
+
+        PatientTO savedPatientTO = patientService.addPatient(patientTO);
+
+        assertEquals(21, savedPatientTO.getId().intValue());
+        assertEquals(2, savedPatientTO.getVisits().size());
+
+        patientService.removePatient(savedPatientTO.getId());
+
+        assertNull(patientService.findById(savedPatientTO.getId()));
+        assertEquals(visitInitSize, visitService.findAllVisits().size());
+
     }
 
 }

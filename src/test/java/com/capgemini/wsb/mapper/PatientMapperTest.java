@@ -1,9 +1,6 @@
 package com.capgemini.wsb.mapper;
 
-import com.capgemini.wsb.dto.AddressTO;
-import com.capgemini.wsb.dto.DoctorTO;
-import com.capgemini.wsb.dto.PatientTO;
-import com.capgemini.wsb.dto.VisitTO;
+import com.capgemini.wsb.dto.*;
 import com.capgemini.wsb.persistence.entity.AddressEntity;
 import com.capgemini.wsb.persistence.entity.DoctorEntity;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
@@ -93,8 +90,20 @@ public class PatientMapperTest {
         DoctorTO doctorTO = new DoctorTO();
         doctorTO.setId(500L);
         visit.setId(101L);
-        visit.setPatient(patientTO);
-        visit.setDoctor(doctorTO);
+
+        // Utwórz ShortenedPatientTO i ustaw tylko wymagane pola
+        ShortenedPatientTO shortenedPatientTO = new ShortenedPatientTO();
+        shortenedPatientTO.setId(patientTO.getId());
+        shortenedPatientTO.setFirstName(patientTO.getFirstName());
+        shortenedPatientTO.setLastName(patientTO.getLastName());
+        visit.setPatient(shortenedPatientTO);
+
+        ShortenedDoctorTO shortenedDoctorTO = new ShortenedDoctorTO();
+        shortenedDoctorTO.setId(doctorTO.getId());
+        shortenedDoctorTO.setFirstName(doctorTO.getFirstName());
+        shortenedDoctorTO.setLastName(doctorTO.getLastName());
+        visit.setDoctor(shortenedDoctorTO);
+
         visits.add(visit);
 
         patientTO.setVisits(visits);
@@ -114,6 +123,7 @@ public class PatientMapperTest {
         assertEquals(1, patientTO.getAddresses().size());
         assertEquals(1, patientTO.getVisits().size());
     }
+
 
     @Test
     public void testMapToTONull() {
