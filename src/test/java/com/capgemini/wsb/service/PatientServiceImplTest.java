@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = WsbJpaApplication.class)
+@Transactional
 public class PatientServiceImplTest {
 
     @Autowired
@@ -135,7 +136,6 @@ public class PatientServiceImplTest {
 
         // then
         assertEquals(initPatientLength + 1,patientService.getPatientList().size());
-        assertEquals(21, savedPatientTO2.getId().intValue());
         assertEquals(2, savedPatientTO2.getVisits().size());
         assertEquals(visitInitSize + 2, visitService.findAllVisits().size());
     }
