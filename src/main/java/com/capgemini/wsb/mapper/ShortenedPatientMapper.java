@@ -1,7 +1,5 @@
 package com.capgemini.wsb.mapper;
 
-import com.capgemini.wsb.dto.PatientTO;
-import com.capgemini.wsb.dto.ShortenedDoctorTO;
 import com.capgemini.wsb.dto.ShortenedPatientTO;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
 

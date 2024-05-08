@@ -37,10 +37,15 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @Transactional
     public PatientTO addPatient(PatientTO patientTO) {
+        System.out.println(patientTO);
         PatientEntity patientEntity = PatientMapper.mapToEntity(patientTO);
-        patientDao.save(patientEntity);
-        return PatientMapper.mapToTO(patientEntity);
+        System.out.println(patientEntity);
+        PatientEntity savedPatient = patientDao.save(patientEntity);
+        System.out.println(savedPatient);
+
+        return PatientMapper.mapToTO(savedPatient);
     }
 
     @Override
@@ -71,4 +76,12 @@ public class PatientServiceImpl implements PatientService {
         Hibernate.initialize(patientEntity.getVisits());
         return PatientMapper.mapToTO(patientEntity);
     }
+
+    @Override
+    public List<PatientTO> getPatientList() {
+        List<PatientEntity> patientList = patientDao.findAll();
+        return patientList.stream().map(PatientMapper::mapToTO).collect(Collectors.toList());
+    }
+
+
 }
