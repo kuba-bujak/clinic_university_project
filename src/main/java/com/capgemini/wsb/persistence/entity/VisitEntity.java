@@ -1,5 +1,8 @@
 package com.capgemini.wsb.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -19,15 +22,19 @@ public class VisitEntity {
 	@Column(name = "time")
 	private LocalDateTime time;
 
+
 	@ManyToOne
 	@JoinColumn(name = "PATIENT_ID")
+	@JsonBackReference
 	private PatientEntity patient;
 
 	@ManyToOne
 	@JoinColumn(name = "DOCTOR_ID")
+	@JsonBackReference
 	private DoctorEntity doctor;
 
 	@OneToMany(mappedBy = "visit", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private List<MedicalTreatmentEntity> medicalTreatments;
 
 	public Long getId() {

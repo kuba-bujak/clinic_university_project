@@ -1,6 +1,8 @@
 package com.capgemini.wsb.persistence.entity;
 
 import com.capgemini.wsb.persistence.enums.Specialization;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -39,8 +41,8 @@ public class DoctorEntity {
 			inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID")
 	)
 	private List<AddressEntity> addresses;
-
 	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private List<VisitEntity> visits;
 
 	public Long getId() {
